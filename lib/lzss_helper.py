@@ -11,7 +11,7 @@ def lzss_compress(input_data: bytes, skip_padding=False, exact_padding=False) ->
     if sys.platform == "win32":
         lzssPath = "/lib/lzss/lzss.exe"
     else:
-        lzssPath = "/lib/lzss/lzss"
+        lzssPath = "/lzss/lzss"
 
     lzss_command_line = [libdir + lzssPath, "-s"]
 
