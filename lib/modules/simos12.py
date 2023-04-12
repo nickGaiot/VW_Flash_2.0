@@ -1,4 +1,9 @@
-from lib.constants import FlashInfo, internal_path, ecu_control_module_identifier
+from lib.constants import (
+    FlashInfo,
+    PatchInfo,
+    internal_path,
+    ecu_control_module_identifier,
+)
 from lib.crypto import aes
 
 from .simosshared import (
@@ -10,6 +15,25 @@ from .simosshared import (
     block_name_to_int,
     checksum_block_location,
 )
+
+def s12_block_transfer_sizes_patch(block_number: int, address: int) -> int:
+    if block_number != 2:
+        print(
+            "Only patching __0006's Block 1 using a provided patch is supported at this time! If you have a patch for another block, please fill in its data areas here."
+        )
+        exit()
+    if address < 0x44900:
+        return 0x100
+    if address >= 0x44900 and address < 0x44B00:
+        return 0x8
+    if address >= 0x44A00 and address < 0x99200:
+        return 0x100
+    if address >= 0x99200 and address < 0x99700:
+        return 0x8
+    if address >= 0x99700 and address < 0xBFB00:
+        return 0x100
+    return 0x8
+
 
 # Simos12 Flash Info
 
@@ -59,6 +83,13 @@ s12_project_name = "SC1"
 
 s12_crypto = aes.AES(s12_key, s12_iv)
 
+s12_patch_info = PatchInfo(
+    patch_box_code="8V0906259__0006",
+    patch_block_index=2,
+    patch_filename=internal_path("docs", "patch12.bin"),
+    block_transfer_sizes_patch=s12_block_transfer_sizes_patch,
+)
+
 s12_flash_info = FlashInfo(
     base_addresses_s12,
     block_lengths_s12,
@@ -75,6 +106,6 @@ s12_flash_info = FlashInfo(
     s12_project_name,
     s12_crypto,
     block_name_to_int,
-    None,
+    s12_patch_info,
     checksum_block_location,
 )

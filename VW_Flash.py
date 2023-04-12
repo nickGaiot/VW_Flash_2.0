@@ -262,11 +262,11 @@ def input_blocks_from_frf(frf_path: str) -> dict[str, BlockData]:
     frf_data = Path(frf_path).read_bytes()
     (flash_data, allowed_boxcodes) = extract_flash_from_frf(
         frf_data, flash_info, is_dsg=args.dsg
-    )
+    ) # outputs the flash_data array  extracted and the allowed boxcodes from the odx
     input_blocks = {}
-    for i in flash_info.block_names_frf.keys():
-        filename = flash_info.block_names_frf[i]
-        input_blocks[filename] = BlockData(i, flash_data[filename])
+    for i in flash_info.block_names_frf.keys():# key =  array index
+        filename = flash_info.block_names_frf[i] # simos 18  1: "FD_0", 2: "FD_1", 3: "FD_2", 4: "FD_3", 5: "FD_4"
+        input_blocks[filename] = BlockData(i, flash_data[filename]) # at this time input_blocks shoud be an array of block data block data as an id and a block bytes
     return input_blocks
 
 
@@ -307,6 +307,7 @@ def callback_function(t, flasher_step, flasher_status, flasher_progress):
 
 
 def flash_bin(flash_info: FlashInfo, input_blocks: dict[str, BlockData], is_dsg=False):
+
     logger.info(binfile.input_block_info(input_blocks, flash_info))
 
     t = tqdm.tqdm(
@@ -424,12 +425,13 @@ elif args.action == "flash_frf":
     flash_bin(flash_info, input_blocks)
 
 elif args.action == "flash_unlock":
-    cal_block = input_blocks[flash_info.block_names_frf[5]]
+    cal_block = input_blocks[flash_info.block_names_frf[5]]#find the cal block by his name
+    #check if boxcode of file is supported by patch
     file_box_code = str(
         cal_block.block_bytes[
-            flash_info.box_code_location[5][0] : flash_info.box_code_location[5][1]
+            flash_info.box_code_location[5][0] : flash_info.box_code_location[5][1]#location of box code in cal
         ].decode()
-    )
+    ) # return 8V0906259 depending on the file
     if (
         file_box_code.strip()
         != flash_info.patch_info.patch_box_code.split("_")[0].strip()
@@ -438,14 +440,15 @@ elif args.action == "flash_unlock":
             f"Boxcode mismatch for unlocking. Got box code {file_box_code} but expected {flash_info.patch_info.patch_box_code}"
         )
         exit()
-
+    #create a new block called "UNLOCK_PATCH" with an blockData object with index 2+5 and data the data for the patch
     input_blocks["UNLOCK_PATCH"] = BlockData(
-        flash_info.patch_info.patch_block_index + 5,
+        flash_info.patch_info.patch_block_index + 5,#for simos 12 is 2 + 5 = 7
         Path(flash_info.patch_info.patch_filename).read_bytes(),
     )
-
+    # the map object contains the block names corresponding to the indices [1, 2, 3, 4, 5]
     key_order = list(map(lambda i: flash_info.block_names_frf[i], [1, 2, 3, 4, 5]))
     key_order.insert(4, "UNLOCK_PATCH")
+    #add the block in positio 4 of the input_blocks
     input_blocks_with_patch = {k: input_blocks[k] for k in key_order}
 
     flash_bin(flash_info, input_blocks_with_patch)

@@ -309,6 +309,7 @@ def flash_bin(
 
     for blockname in input_blocks:
         block: BlockData = input_blocks[blockname]
+        #The asw_blocks list would contain the block numbers for the blocks with names starting with "ASW" so for simos 12
         asw_blocks = [
             block_number
             for block_number in flash_info.block_name_to_number.keys()
