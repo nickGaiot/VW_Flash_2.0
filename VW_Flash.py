@@ -325,7 +325,7 @@ def flash_bin(flash_info: FlashInfo, input_blocks: dict[str, BlockData], is_dsg=
         wrap_callback_function,
         interface=args.interface,
         patch_cboot=args.patch_cboot,
-        stmin_override=650000,
+        stmin_override=700000,
     )
 
     t.close()
