@@ -222,7 +222,7 @@ def patch_block(
     data = block.block_encrypted_bytes
 
     detailedLogger.info(
-        "Erasing next block for PATCH process - erasing block 3   "
+        "Erasing next block for PATCH process - erasing block 1   "
         + str(block_number + 1)
         + " to patch "
         + str(block_number)
@@ -522,7 +522,15 @@ def flash_blocks(
                 block = block_files[filename]
                 blocknum = block.block_number
 
-
+                if blocknum <= 5:
+                    flash_block(
+                        client=client,
+                        filename=filename,
+                        block=block,
+                        vin=vin,
+                        callback=callback,
+                        flash_info=flash_info,
+                    )
 
                 if blocknum > 5:
                     patch_block(
