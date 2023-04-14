@@ -222,7 +222,7 @@ def patch_block(
     data = block.block_encrypted_bytes
 
     detailedLogger.info(
-        "Erasing next block for PATCH process - erasing block "
+        "Erasing next block for PATCH process - erasing block 3   "
         + str(block_number + 1)
         + " to patch "
         + str(block_number)
@@ -231,7 +231,7 @@ def patch_block(
     # Erase Flash
     # Hardcoded to erase block 5 (CAL) prior to patch. This means we must ALWAYS flash CAL after patching.
 
-    client.start_routine(Routine.EraseMemory, data=bytes([0x1, 5]))
+    client.start_routine(Routine.EraseMemory, data=bytes([0x1, 3]))
 
     logger.info(vin + ": PATCHING block: " + str(block_number) + " with " + filename)
     detailedLogger.info(
