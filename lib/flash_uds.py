@@ -222,7 +222,7 @@ def patch_block(
     data = block.block_encrypted_bytes
 
     detailedLogger.info(
-        "Erasing next block for PATCH process - erasing block "
+        "Erasing next block for PATCH process - erasing block 1   "
         + str(block_number + 1)
         + " to patch "
         + str(block_number)
