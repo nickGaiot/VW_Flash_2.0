@@ -308,7 +308,7 @@ def callback_function(t, flasher_step, flasher_status, flasher_progress):
 
 def flash_bin(flash_info: FlashInfo, input_blocks: dict[str, BlockData], is_dsg=False):
 
-    logger.info(binfile.input_block_info(input_blocks, flash_info))
+    #logger.info(binfile.input_block_info(input_blocks, flash_info))
 
     t = tqdm.tqdm(
         total=100,

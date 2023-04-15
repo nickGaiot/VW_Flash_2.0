@@ -40,7 +40,7 @@ def input_block_info(
                             flash_info.software_version_location[
                                 input_blocks[filename].block_number
                             ][0] : flash_info.software_version_location[
-                                input_blocks[filename].block_number
+                                input_blocks[filename].block_number-1
                             ][
                                 1
                             ]
