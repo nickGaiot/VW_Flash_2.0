@@ -275,7 +275,7 @@ def patch_block(
         while not success:
             try:
                 time.sleep(0.025)
-                client.transfer_dafta(counter, transfer_data)
+                client.transfer_data(counter, transfer_data)
                 success = True
                 counter = next_counter(counter)
             except exceptions.NegativeResponseException:
