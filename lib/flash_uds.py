@@ -346,8 +346,19 @@ def flash_blocks(
         )
 
     logger.info(
-        "Preparing to flash the following blocks: "
-
+        "Preparing to flash the following blocks:\n     "
+        + "     \n".join(
+            [
+                " : ".join(
+                    [
+                        filename,
+                        str(block_files[filename].block_number),
+                        str(block_files[filename].boxcode),
+                    ]
+                )
+                for filename in block_files
+            ]
+        )
     )
 
     def send_obd(data):
