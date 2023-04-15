@@ -34,8 +34,12 @@ block_checksums_simos = {
     3: bytes.fromhex("00000000"),
     4: bytes.fromhex("00000000"),
     5: bytes.fromhex("00000000"),
+    6: bytes.fromhex("00000000"),
     7: bytes.fromhex("00000000"),
+    8: bytes.fromhex("00000000"),
     9: bytes.fromhex("00000000"),
+
+
 }
 
 # The location of each checksum in the bin
