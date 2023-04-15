@@ -85,7 +85,7 @@ s12_crypto = aes.AES(s12_key, s12_iv)
 
 s12_patch_info = PatchInfo(
     patch_box_code="8V0906259__0006",
-    patch_block_index=2,
+    patch_block_index=3,
     patch_filename=internal_path("docs", "patch12.bin"),
     block_transfer_sizes_patch=s12_block_transfer_sizes_patch,
 )
