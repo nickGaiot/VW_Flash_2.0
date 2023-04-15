@@ -151,8 +151,9 @@ def prepare_blocks(
         cliLogger.info(
             "Compressing " + filename + " input size :" + str(len(binary_data))
         )
-        compressed_binary = binary_data
-
+        compressed_binary = (
+            lzss.lzss_compress(binary_data) if blocknum < 6 else binary_data
+        )
 
         if callback:
             callback(
