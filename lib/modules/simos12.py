@@ -17,7 +17,7 @@ from .simosshared import (
 )
 
 def s12_block_transfer_sizes_patch(block_number: int, address: int) -> int:
-    if block_number != 2:
+    if block_number != 3:
         print(
             "Only patching __0006's Block 1 using a provided patch is supported at this time! If you have a patch for another block, please fill in its data areas here."
         )
