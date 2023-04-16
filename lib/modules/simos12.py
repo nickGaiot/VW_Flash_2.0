@@ -23,7 +23,7 @@ def s12_block_transfer_sizes_patch(block_number: int, address: int) -> int:
         )
         exit()
     if address < 0x44900:
-        return 0x100
+        return 0x8
     if address >= 0x44900 and address < 0x44B00:
         return 0x8
     if address >= 0x44A00 and address < 0x99200:
