@@ -275,6 +275,7 @@ def patch_block(
         while not success:
             try:
                 time.sleep(0.025)
+                client.start_routine(Routine.EraseMemory, data=bytes([0x1, 1]))
                 client.transfer_data(counter, transfer_data)
                 success = True
                 counter = next_counter(counter)
