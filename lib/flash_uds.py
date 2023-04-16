@@ -231,7 +231,7 @@ def patch_block(
     # Erase Flash
     # Hardcoded to erase block 5 (CAL) prior to patch. This means we must ALWAYS flash CAL after patching.
 
-    client.start_routine(Routine.EraseMemory, data=bytes([0x1, 1]))
+    client.start_routine(Routine.EraseMemory, data=bytes([0x1, 5]))
 
     logger.info(vin + ": PATCHING block: " + str(block_number) + " with " + filename)
     detailedLogger.info(
@@ -275,7 +275,6 @@ def patch_block(
         while not success:
             try:
                 time.sleep(0.025)
-                client.start_routine(Routine.EraseMemory, data=bytes([0x1, 1]))
                 client.transfer_data(counter, transfer_data)
                 success = True
                 counter = next_counter(counter)
