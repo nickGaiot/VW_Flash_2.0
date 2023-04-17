@@ -262,6 +262,7 @@ def patch_block(
             block_number, transfer_address
         )
         block_end = min(len(data), transfer_address + transfer_size)
+        detailedLogger.info("writing data from "+str(transfer_address)+" to "+str(block_end))
         transfer_data = data[transfer_address:block_end]
         if callback:
             progress = transfer_address * 100 / len(data)
@@ -521,7 +522,16 @@ def flash_blocks(
             for filename in block_files:
                 block = block_files[filename]
                 blocknum = block.block_number
-
+                
+                if blocknum <= 5:
+                    flash_block(
+                        client=client,
+                        filename=filename,
+                        block=block,
+                        vin=vin,
+                        callback=callback,
+                        flash_info=flash_info,
+                    )
 
                 if blocknum > 5:
                     patch_block(
@@ -546,7 +556,7 @@ def flash_blocks(
 
             client.tester_present()
 
-            # If a periodic task was patched or altered as part of the process, let's give it a few seconds to run
+            # ew seconds to run
             time.sleep(5)
             if callback:
                 callback(
