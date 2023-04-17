@@ -522,7 +522,7 @@ def flash_blocks(
             for filename in block_files:
                 block = block_files[filename]
                 blocknum = block.block_number
-                
+
                 if blocknum <= 5:
                     flash_block(
                         client=client,
