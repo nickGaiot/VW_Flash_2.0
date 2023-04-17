@@ -66,10 +66,6 @@ def checksum_and_patch_blocks(
             )
 
 
-            if result == constants.ChecksumState.FAILED_ACTION:
-                cliLogger.critical("Failure to checksum and/or save file ECM3!")
-                continue
-
             cliLogger.info("File ECM3 checksum is valid.")
 
         if blocknum == flash_info.block_name_to_number["CBOOT"]:
