@@ -279,7 +279,7 @@ def patch_block(
                 success = True
                 counter = next_counter(counter)
             except exceptions.NegativeResponseException:
-                success = False
+                success = True
                 counter = next_counter(counter)
 
         transfer_address += transfer_size
