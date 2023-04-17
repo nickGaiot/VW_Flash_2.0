@@ -65,13 +65,6 @@ def checksum_and_patch_blocks(
                 flasher_progress=40,
             )
 
-        if blocknum == flash_info.block_name_to_number["CAL"]:
-            (result, binary_data) = checksum_ecm3(
-                flash_info=flash_info,
-                input_blocks=input_blocks,
-                should_fix=True,
-                is_early=False,
-            )
 
             if result == constants.ChecksumState.FAILED_ACTION:
                 cliLogger.critical("Failure to checksum and/or save file ECM3!")
