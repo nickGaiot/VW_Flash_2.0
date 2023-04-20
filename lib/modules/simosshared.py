@@ -1,6 +1,6 @@
 # In Simos, we can send the maximum allowable size worth of compressed data in an ISO-TP request when we are using the "normal" TransferData system.
 
-block_transfer_sizes_simos = {1: 0xFFD, 2: 0xFFD, 3: 0xFFD, 4: 0xFFD, 5: 0x100}
+block_transfer_sizes_simos = {1: 0xFFD, 2: 0xFFD, 3: 0xFFD, 4: 0xFFD, 5: 0xFFD}
 
 software_version_location_simos = {
     1: [0x437, 0x43F],
