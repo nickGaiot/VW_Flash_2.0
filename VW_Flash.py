@@ -281,7 +281,7 @@ if args.action == "flash_cal":
     args.block = ["CAL"]
 
 # if the number of block args doesn't match the number of file args, log it and exit
-if (args.infile and not args.block) or (
+if (args.infile and not args.block or args.custom) or (
     args.infile and (len(args.block) != len(args.infile))
 ):
     logger.critical("You must specify a block for every infile")
