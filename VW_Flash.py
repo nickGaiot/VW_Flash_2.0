@@ -290,7 +290,7 @@ if args.frf:
     input_blocks = input_blocks_from_frf(args.frf)
 
 if args.custom:
-    blocks = [int(flash_info.block_to_number(block)) for block in args.block]
+    blocks = [int(flash_info.block_to_number(block)) for block in args.custom]
 
 if args.input_bin:
     input_blocks = binfile.blocks_from_bin(args.input_bin, flash_info)
