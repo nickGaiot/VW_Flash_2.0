@@ -74,4 +74,5 @@ block_name_to_int = {
     "PATCH_ASW1": 7,
     "PATCH_ASW2": 8,
     "PATCH_ASW3": 9,
+    "CUS": 10,
 }
