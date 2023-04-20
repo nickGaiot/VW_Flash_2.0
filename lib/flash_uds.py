@@ -218,8 +218,8 @@ def patch_block(
     flash_info: constants.FlashInfo,
     callback=None,
 ):
-    block_number = block.block_number
-    block_number = block_number - 5
+
+    block_number = 2
     data = block.block_encrypted_bytes
 
     detailedLogger.info(
@@ -534,7 +534,7 @@ def flash_blocks(
                         flash_info=flash_info,
                     )
                 if blocknum ==10:
-                    flash_block(
+                    patch_block(
                         client=client,
                         filename=filename,
                         block=block,
