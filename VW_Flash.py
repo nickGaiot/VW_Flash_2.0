@@ -280,12 +280,7 @@ def input_blocks_from_frf(frf_path: str) -> dict[str, BlockData]:
 if args.action == "flash_cal":
     args.block = ["CAL"]
 
-# if the number of block args doesn't match the number of file args, log it and exit
-if (args.infile and not args.block and args.custom) or (
-    args.infile and (len(args.block) != len(args.infile))
-):
-    logger.critical("You must specify a block for every infile")
-    exit()
+
 
 # convert --blocks on the command line into a list of ints
 if args.block:
