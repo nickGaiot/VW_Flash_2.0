@@ -66,7 +66,7 @@ def flash_block(
     tuner_tag: str = "",
     callback=None,
 ):
-    block_number = 5
+    block_number = block.block_number
     data = block.block_encrypted_bytes
     block_identifier = flash_info.block_identifiers[block_number]
 
@@ -219,7 +219,7 @@ def patch_block(
     callback=None,
 ):
 
-    block_number = 2
+    block_number = 3
     data = block.block_encrypted_bytes
 
     detailedLogger.info(
