@@ -66,7 +66,7 @@ def flash_block(
     tuner_tag: str = "",
     callback=None,
 ):
-    block_number = block.block_number
+    block_number = 5
     data = block.block_encrypted_bytes
     block_identifier = flash_info.block_identifiers[block_number]
 
@@ -95,7 +95,7 @@ def flash_block(
         detailedLogger.info(
             "Erasing block " + str(block_number) + ", routine 0xFF00..."
         )
-        client.start_routine(Routine.EraseMemory, data=bytes([0x1, 1]))
+        client.start_routine(Routine.EraseMemory, data=bytes([0x1, block_number]))
 
     if callback:
         callback(
