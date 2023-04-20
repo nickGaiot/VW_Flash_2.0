@@ -54,7 +54,7 @@ def next_counter(counter: int) -> int:
     if counter == 0xFF:
         return 0
     else:
-        return counter + 1
+        return 1
 
 
 def flash_block(
