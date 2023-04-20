@@ -133,7 +133,7 @@ def flash_block(
 
     detailedLogger.info("Transferring data... " + str(len(data)) + " bytes to write")
     # Transfer Data
-    counter = 1
+    counter = 2
     for block_base_address in range(
         0, len(data), flash_info.block_transfer_sizes[block_number]
     ):
