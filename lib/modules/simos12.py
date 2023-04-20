@@ -77,7 +77,7 @@ s12_sa2_script = bytes.fromhex(
 
 s12_binfile_size = 4194304
 
-block_names_frf_s12 = {1: "FD_0", 2: "FD_1", 3: "FD_2", 4: "FD_3", 5: "FD_4"}
+block_names_frf_s12 = {1: "FD_0", 2: "FD_1", 3: "FD_2", 4: "FD_3", 5: "FD_4", 10: "CUS"}
 
 s12_project_name = "SC1"
 

@@ -533,6 +533,15 @@ def flash_blocks(
                         callback=callback,
                         flash_info=flash_info,
                     )
+                if blocknum ==10:
+                    flash_block(
+                        client=client,
+                        filename=filename,
+                        block=block,
+                        vin=vin,
+                        callback=callback,
+                        flash_info=flash_info,
+                    )
 
                 if blocknum > 5:
                     patch_block(

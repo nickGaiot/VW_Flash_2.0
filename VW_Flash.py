@@ -287,6 +287,9 @@ if args.block:
 if args.frf:
     input_blocks = input_blocks_from_frf(args.frf)
 
+if args.custom:
+    blocks = [int(flash_info.block_to_number(block)) for block in args.block]
+
 if args.input_bin:
     input_blocks = binfile.blocks_from_bin(args.input_bin, flash_info)
     logger.info(binfile.input_block_info(input_blocks, flash_info))
@@ -421,6 +424,7 @@ elif args.action == "flash_cal":
     )
 
     t.close()
+
 
 elif args.action == "flash_frf":
     flash_bin(flash_info, input_blocks)
