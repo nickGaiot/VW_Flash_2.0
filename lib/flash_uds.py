@@ -54,7 +54,7 @@ def next_counter(counter: int) -> int:
     if counter == 0xFF:
         return 0
     else:
-        return 1
+        return counter +1
 
 
 def flash_block(
@@ -133,7 +133,7 @@ def flash_block(
 
     detailedLogger.info("Transferring data... " + str(len(data)) + " bytes to write")
     # Transfer Data
-    counter = 2
+    counter = 1
     for block_base_address in range(
         0, len(data), flash_info.block_transfer_sizes[block_number]
     ):
