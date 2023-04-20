@@ -95,7 +95,7 @@ def flash_block(
         detailedLogger.info(
             "Erasing block " + str(block_number) + ", routine 0xFF00..."
         )
-        client.start_routine(Routine.EraseMemory, data=bytes([0x1, 1]))
+        client.start_routine(Routine.EraseMemory, data=bytes([0x1, block_identifier]))
 
     if callback:
         callback(
@@ -523,6 +523,15 @@ def flash_blocks(
                 block = block_files[filename]
                 blocknum = block.block_number
 
+                if blocknum <= 5:
+                    flash_block(
+                        client=client,
+                        filename=filename,
+                        block=block,
+                        vin=vin,
+                        callback=callback,
+                        flash_info=flash_info,
+                    )
 
                 if blocknum > 5:
                     patch_block(
