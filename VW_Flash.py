@@ -305,6 +305,13 @@ if args.infile and args.block:
             blocks[i], Path(args.infile[i]).read_bytes()
         )
 
+if args.infile and args.custom:
+    input_blocks: dict[str, BlockData] = {}
+    for i in range(0, len(args.infile)):
+        input_blocks[args.infile[i]] = BlockData(
+            blocks[i], Path(args.infile[i]).read_bytes()
+        )
+
 
 def callback_function(t, flasher_step, flasher_status, flasher_progress):
     t.update(round(flasher_progress - t.n))
