@@ -150,6 +150,7 @@ def flash_block(
             )
 
         client.transfer_data(counter, data[block_base_address:block_end])
+        detailedLogger.info("Transferring " + str(block_base_address) + " to flash")
         counter = next_counter(counter)
 
     if callback:
