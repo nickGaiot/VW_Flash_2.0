@@ -543,15 +543,7 @@ def flash_blocks(
                         flash_info=flash_info,
                     )
 
-                if blocknum > 5:
-                    patch_block(
-                        client=client,
-                        filename=filename,
-                        block=block,
-                        vin=vin,
-                        callback=callback,
-                        flash_info=flash_info,
-                    )
+
 
             if callback:
                 callback(
