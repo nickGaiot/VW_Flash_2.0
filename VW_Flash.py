@@ -94,7 +94,14 @@ parser.add_argument(
 parser.add_argument(
     "--infile", help="the absolute path of an inputfile", action="append"
 )
-
+parser.add_argument(
+    "--custom",
+    type=str,
+    help="if you want custom",
+    choices=block_number_help,
+    action="append",
+    required=False,
+)
 parser.add_argument(
     "--block",
     type=str,
