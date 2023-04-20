@@ -38,6 +38,7 @@ block_checksums_simos = {
     7: bytes.fromhex("00000000"),
     8: bytes.fromhex("00000000"),
     9: bytes.fromhex("00000000"),
+   10: bytes.fromhex("00000000"),
 
 
 }
