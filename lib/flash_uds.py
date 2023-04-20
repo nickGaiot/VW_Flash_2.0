@@ -95,7 +95,7 @@ def flash_block(
         detailedLogger.info(
             "Erasing block " + str(block_number) + ", routine 0xFF00..."
         )
-        client.start_routine(Routine.EraseMemory, data=bytes([0x1, 5]))
+        client.start_routine(Routine.EraseMemory, data=bytes([0x1, 1]))
 
     if callback:
         callback(
